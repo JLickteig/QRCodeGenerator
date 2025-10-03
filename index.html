@@ -226,7 +226,8 @@ FN:${firstName} ${lastName}`;
                 file: 'png'
             };
 
-            const response = await fetch('https://api.qrcode-monkey.com/qr/custom', {
+            // Use CORS proxy to bypass restrictions
+            const response = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://api.qrcode-monkey.com/qr/custom'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -307,7 +308,7 @@ FN:${firstName} ${lastName}`;
 
                 showQRCodes();
             } catch (err) {
-                showError('Failed to generate QR codes. This app needs to be hosted on a web server to work properly.');
+                showError('Failed to generate QR codes. Please try again.');
                 console.error('Full error:', err);
             } finally {
                 hideLoading();
